@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "build:ui": "rm -rf build && cd ../bloglist-frontend && npm run build && cp -r build ../blogilista",
+    "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "fly logs",
+    "lint": "eslint .",
+    "test": "jest --verbose --runInBand",
+    "start:test": "NODE_ENV=test node index.js",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "npm run start:test & npx wait-on http://localhost:3000/ && npm run cypress:run"
+  },
+  "devDependencies": {
+    "cypress": "^13.17.0"
+  }
+}
